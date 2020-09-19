@@ -3,9 +3,13 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "App-Domian-class-project": {
+    "angular-signup-verification-boilerplate": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "less"
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -13,18 +17,18 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/App-Domian-class-project",
+            "outputPath": "dist/angular-signup-verification-boilerplate",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "aot": false,
+            "aot": true,
             "assets": [
               "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.less"
             ],
             "scripts": []
           },
@@ -41,7 +45,6 @@
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -63,18 +66,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "App-Domian-class-project:build"
+            "browserTarget": "angular-signup-verification-boilerplate:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "App-Domian-class-project:build:production"
+              "browserTarget": "angular-signup-verification-boilerplate:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "App-Domian-class-project:build"
+            "browserTarget": "angular-signup-verification-boilerplate:build"
           }
         },
         "test": {
@@ -89,7 +92,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.less"
             ],
             "scripts": []
           }
@@ -111,15 +114,19 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "App-Domian-class-project:serve"
+            "devServerTarget": "angular-signup-verification-boilerplate:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "App-Domian-class-project:serve:production"
+              "devServerTarget": "angular-signup-verification-boilerplate:serve:production"
             }
           }
         }
       }
-    }},
-  "defaultProject": "App-Domian-class-project"
+    }
+  },
+  "defaultProject": "angular-signup-verification-boilerplate",
+  "cli": {
+    "analytics": "df45d8fb-81dc-4fc0-b15c-854d127ec7bb"
+  }
 }

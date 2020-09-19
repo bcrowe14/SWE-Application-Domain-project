@@ -1,10 +1,18 @@
-import { Component } from '@angular/core';
+﻿import { Component } from '@angular/core';
 
-@Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
-})
+import { AccountService } from './_services';
+import { Account, Role } from './_models';
+
+@Component({ selector: 'app', templateUrl: 'app.component.html' })
 export class AppComponent {
-  title = 'App-Domian-class-project';
+    Role = Role;
+    account: Account;
+
+    constructor(private accountService: AccountService) {
+        this.accountService.account.subscribe(x => this.account = x);
+    }
+
+    logout() {
+        this.accountService.logout();
+    }
 }
