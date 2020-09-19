@@ -44,6 +44,7 @@
             <select formControlName="role" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.role.errors }">
                 <option value=""></option>
                 <option value="User">User</option>
+                <option value="Manager">Manager</option>
                 <option value="Admin">Admin</option>
             </select>
             <div *ngIf="submitted && f.role.errors" class="invalid-feedback">
@@ -51,6 +52,39 @@
             </div>
         </div>
     </div>
+
+  <!-- Account disabled information -->
+
+  <div class="form-row">
+    <div class="form-group col">
+      <label>Disabled Status</label>
+      <select formControlName="disabled" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.disabled.errors }">
+        <option value=""></option>
+        <option value="Enabled">Enabled</option>
+        <option value="Forever">Forever</option>
+        <option value="Temporarily">Temporarily</option>
+      </select>
+      <div *ngIf="submitted && f.disabled.errors" class="invalid-feedback">
+        <div *ngIf="f.title.disabled.required">Status required</div>
+      </div>
+    </div>
+    <div class="form-group col-5">
+      <label>Start Date</label>
+      <input type="date" formControlName="startDisable" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.startDisable.errors }" />
+      <div *ngIf="submitted && f.startDisable.errors" class="invalid-feedback">
+        <div *ngIf="f.firstName.startDisable.required">Required</div>
+      </div>
+    </div>
+    <div class="form-group col-5">
+      <label>Last Name</label>
+      <input type="date" formControlName="endDisable" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.endDisable.errors }" />
+      <div *ngIf="submitted && f.endDisable.errors" class="invalid-feedback">
+        <div *ngIf="f.lastName.endDisable.required">Eequired</div>
+      </div>
+    </div>
+  </div>
+
+
     <div *ngIf="!isAddMode">
         <h3 class="pt-3">Change Password</h3>
         <p>Leave blank to keep the same password</p>

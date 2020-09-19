@@ -1,4 +1,5 @@
 ﻿import { Role } from './role';
+import { DisabledStatus } from './DisabledStatus'
 
 export class Account {
     id: string;
@@ -7,5 +8,8 @@ export class Account {
     lastName: string;
     email: string;
     role: Role;
+    disabled: DisabledStatus;
+    startDisable: Date;
+    endDisable: Date;
     jwtToken?: string;
 }
