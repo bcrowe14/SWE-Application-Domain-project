@@ -30,16 +30,17 @@ export class AddEditComponent implements OnInit {
             title: ['', Validators.required],
             firstName: ['', Validators.required],
             lastName: ['', Validators.required],
-            email: ['', [Validators.required, Validators.email]],
+            email: ['', Validators.required],
             role: ['', Validators.required],
             disabled: ['', Validators.required],
-            startDisable: [''],
-            endDisable: [''],
+            startDisable: [new Date()],
+            endDisable: [new Date()],
             password: ['', [Validators.minLength(8), this.isAddMode ? Validators.required : Validators.nullValidator]],
             confirmPassword: ['']
         }, {
             validator: MustMatch('password', 'confirmPassword')
         });
+        this.setDatesRequired()
 
         if (!this.isAddMode) {
             this.accountService.getById(this.id)
@@ -47,13 +48,31 @@ export class AddEditComponent implements OnInit {
                 .subscribe(x => this.form.patchValue(x));
         }
     }
+//Make date required if temporarily banned
+    setDatesRequired() {
+        const startControl = this.form.get('startDisable');
+        const endControl = this.form.get('endDisable');
+        this.form.get('disabled').valueChanges
+          .subscribe(disabled => {
 
+            if (disabled === 'Temporarily') {
+              startControl.setValidators([Validators.required]);
+              endControl.setValidators([Validators.required]);
+            }
+            else {
+              startControl.setValidators(null);
+              endControl.setValidators(null);
+            }
+
+            startControl.updateValueAndValidity();
+            endControl.updateValueAndValidity();
+          });
+      }
     // convenience getter for easy access to form fields
     get f() { return this.form.controls; }
 
     onSubmit() {
         this.submitted = true;
-
         // reset alerts on submit
         this.alertService.clear();
 

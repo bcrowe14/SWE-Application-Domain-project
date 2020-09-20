@@ -31,11 +31,20 @@ export class AccountService {
             .pipe(map(account => {
                 this.accountSubject.next(account);
                 this.startRefreshTokenTimer();
-                if (account.disabled=="Forever"||account.disabled=="Temporarily")
+                if (account.disabled==="Forever")
                 {
                 this.logout();
                 throw new Error("Account is disabled");
                 return {returnURL: 'account/login'};
+                }
+                if (account.disabled==="Temporarily")
+                {
+                if(new Date(account.startDisable) < new Date() && new Date(account.endDisable) > new Date())
+                {
+                this.logout();
+                throw new Error("Account is disabled");
+                return {returnURL: 'account/login'};
+                }
                 }
                 return account;
             }));
