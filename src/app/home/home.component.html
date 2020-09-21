@@ -1,6 +1,46 @@
-﻿<div class="p-4">
-    <div class="container">
-        <h1>Hi {{account.firstName}}!</h1>
-        <p>You're logged in with Angular 10 & JWT!!</p>
-    </div>
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="home.css">
+</head>
+
+
+<header>
+
+  <p style="color: #f4e022">
+    <img src = "assets/Logo.png" width="90px" height="90px" align="center" >
+  <hd> Midas Financial Services</hd>
+
+</header>
+
+<body>
+
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <!--
+  need to add user profile image
+  -->
+  <p>  Welcome, {{account.firstName}}! </p>
+  <a href="#">Dashboard</a>
+  <a href="#">User Accounts</a>
+  <a href="#">Logs</a>
+  <a href="#">Logout</a>
 </div>
+
+<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+
+<script>
+  function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+  }
+
+  function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+  }
+</script>
+
+<!--
+-->
+</body>
+</html>
